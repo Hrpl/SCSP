@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace SCSP.Domain.Commons.DTO;
 
-public class ProjectDTO
+public class GetStudentsDTO
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public string Description { get; set; }
-    public int TeacherId { get; set; }
-    public int StudentId { get; set; }
+    public string Surname { get; set; }
+    public string Patronymic { get; set; }
 }

@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SCSP.Domain.Commons.DTO;
+namespace SCSP.Domain.Commons.Request;
 
-public class CommentDTO
+public class CreateCommentRequest
 {
-    public int Id { get; set; }
     public int ProjectId { get; set; }
-    public string Name { get; set; }
     public string Comment { get; set; }
 }

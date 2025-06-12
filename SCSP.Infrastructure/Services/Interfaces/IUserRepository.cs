@@ -2,6 +2,7 @@
 using SCSP.Domain.Models;
 using Npgsql;
 using SqlKata.Execution;
+using SCSP.Domain.Commons.DTO;
 
 namespace SCSP.Infrastructure.Services.Interfaces;
 
@@ -56,5 +57,10 @@ public interface IUserRepository
     /// <param name="email"></param>
     /// <returns></returns>
     public Task<string?> GetSaltByEmail(string email);
+
+
+    public Task<IEnumerable<GetRolesDTO>> GetRolesAsync();
+
+    public Task<IEnumerable<GetStudentsDTO>> GetStudentsAsync();
 
 }

@@ -4,6 +4,7 @@ using SCSP.Infrastructure.Services.Interfaces;
 using Npgsql;
 using SqlKata;
 using SqlKata.Execution;
+using SCSP.Domain.Commons.DTO;
 
 namespace SCSP.Infrastructure.Services.Implementations;
 
@@ -61,12 +62,35 @@ public class UserRepository : IUserRepository
         return await _query.ExecuteAsync(query);
     }
 
+    public async Task<IEnumerable<GetRolesDTO>> GetRolesAsync()
+    {
+        var query = _query.Query("roles").Select("id as Id", "name as Name");
+
+        return await _query.GetAsync<GetRolesDTO>(query);
+    }
+
     /// <inheritdoc />
     public async Task<string?> GetSaltByEmail(string email)
     {
         var query = _query.Query(TableName).Where("email", email).Select("salt");
 
         var result = await _query.FirstOrDefaultAsync<string?>(query);
+
+        return result;
+    }
+
+    public async Task<IEnumerable<GetStudentsDTO>> GetStudentsAsync()
+    {
+        var query = _query.Query("users as u")
+            .LeftJoin("roles as r", "r.id", "u.role_id")
+            .Where("r.name", "Ученик")
+            .Select("u.id as Id", 
+            "u.surname as Surname",
+            "u.name as Name",
+            "u.patronymic as Patronymic"
+            );
+
+        var result = await _query.GetAsync<GetStudentsDTO>(query);
 
         return result;
     }

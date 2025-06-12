@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using SqlKata.Compilers;
 using SqlKata.Execution;
 using Swashbuckle.AspNetCore.Annotations;
+using SCSP.Domain.Commons.DTO;
 
 namespace EMDR42.API.Controllers;
 
@@ -80,5 +81,21 @@ public class UserController : ControllerBase
             }); 
 
         }
+    }
+
+    [HttpGet("roles")]
+    [SwaggerOperation(Summary = "Получение ролей")]
+    public async Task<ActionResult<IEnumerable<GetRolesDTO>>> GetRoles()
+    { 
+        var result = await _userService.GetRolesAsync(); 
+        return Ok(result);
+    }
+
+    [HttpGet("students")]
+    [SwaggerOperation(Summary = "Получение списка учеников")]
+    public async Task<ActionResult<IEnumerable<GetRolesDTO>>> GetStudents()
+    {
+        var result = await _userService.GetStudentsAsync();
+        return Ok(result);
     }
 }

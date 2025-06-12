@@ -12,6 +12,10 @@ public class ProjectModel
     public string Name { get; set; }
     [SqlKata.Column("description")]
     public string Description { get; set; }
+    [SqlKata.Column("teacher_id")]
+    public int TeacherId { get; set; }
+    [SqlKata.Column("student_id")]
+    public int StudentId { get; set; }
     [SqlKata.Column("created_at")]
     public DateTime? CreatedAt { get; set; } = DateTime.UtcNow;
     [SqlKata.Column("updated_at")]
