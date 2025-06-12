@@ -11,16 +11,16 @@ EXPOSE 5160
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Development
 WORKDIR /src
-COPY ["SCSP.API/SCSP.API.csproj", "SCSP.API/"]
-RUN dotnet restore "./SCSP.API/SCSP.API.csproj"
+COPY ["SCSP.API/SCSP.csproj", "SCSP.API/"]
+RUN dotnet restore "./SCSP.API/SCSP.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "./SCSP.API/SCSP.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./SCSP.API/SCSP.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 # Этот этап используется для публикации проекта службы, который будет скопирован на последний этап
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Development
-RUN dotnet publish "./SCSP.API/SCSP.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./SCSP.API/SCSP.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 # Этот этап используется в рабочей среде или при запуске из VS в обычном режиме (по умолчанию, когда конфигурация отладки не используется)
 FROM base AS final
