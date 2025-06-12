@@ -8,7 +8,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:5160; http://localhost:5161"
+      "applicationUrl": "http://localhost:5160"
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -23,7 +23,6 @@
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
       "environmentVariables": {
-        "ASPNETCORE_HTTPS_PORTS": "5160",
         "ASPNETCORE_HTTP_PORTS": "5160"
       },
       "publishAllPorts": true,
