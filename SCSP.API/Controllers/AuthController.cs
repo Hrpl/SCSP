@@ -58,6 +58,7 @@ public class AuthController : ControllerBase
 
             var id = await _userService.GetUserIdAsync(req.Email);
             var jwt = _jwtHelper.CreateJwtAsync(id);
+            jwt.IsAdmin = _userService.IsAdmin(req.Email);
 
             return Ok(jwt);
         }

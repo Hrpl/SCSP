@@ -122,6 +122,19 @@ public class UserRepository : IUserRepository
         return result;
     }
 
+    public bool IsAdmin(string login)
+    {
+        var query = _query.Query("users as u")
+            .LeftJoin("roles as r", "r.id", "u.role_id")
+            .Where("u.email", login)
+            .Select("r.name");
+
+        var name = _query.FirstOrDefault<string>(query);
+
+        if (name == "Ученик") return false;
+        else return true;
+    }
+
     /// <inheritdoc />
     public async Task<bool> LoginUserAsync(LoginRequest request)
     {

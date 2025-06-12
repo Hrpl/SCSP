@@ -58,7 +58,7 @@ public interface IUserRepository
     /// <returns></returns>
     public Task<string?> GetSaltByEmail(string email);
 
-
+    public bool IsAdmin(string login);
     public Task<IEnumerable<GetRolesDTO>> GetRolesAsync();
 
     public Task<IEnumerable<GetStudentsDTO>> GetStudentsAsync();
