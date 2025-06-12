@@ -23,6 +23,7 @@ public static class AddServiceExtensions
         services.AddSwaggerGen(c =>
             {
                 c.EnableAnnotations();
+                c.AddServer(new OpenApiServer { Url = "/scsp" });
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Repositories", Version = "v2024" });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
