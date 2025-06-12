@@ -17,7 +17,7 @@ public class DbConnectionManager : IDbConnectionManager
     {
         _logger = logger;
     }
-    private string NpgsqlConnectionString => $"Host=localhost;Port=5432;Database=SCSP;Username=postgres;Password=2208;";
+    private string NpgsqlConnectionString => $"Host=85.208.87.10;Port=5432;Database=SCSP;Username=postgres;Password=2208;";
 
 
     public NpgsqlConnection PostgresDbConnection => new(NpgsqlConnectionString);

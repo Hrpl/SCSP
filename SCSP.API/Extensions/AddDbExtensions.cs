@@ -11,7 +11,7 @@ public static class AddDbExtensions
         
         builder.Services.AddDbContext<ApplicationDbContext>(options =>
         options.UseNpgsql(
-            $"Host=localhost;Port=5432;Database=SCSP;Username=postgres;Password=2208;"
+            $"Host=85.208.87.10;Port=5432;Database=SCSP;Username=postgres;Password=2208;"
         ));
         builder.Services.AddDbContext<ApplicationDbContext>();
     }

@@ -4,7 +4,7 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 5188
+EXPOSE 5160
 
 
 # Этот этап используется для сборки проекта службы
