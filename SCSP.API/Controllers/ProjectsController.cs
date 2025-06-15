@@ -27,7 +27,7 @@ public class ProjectsController : ControllerBase
     [HttpGet]
     [Authorize]
     [SwaggerOperation(Summary = "Получение проектов пользователя. Нужен JWT")]
-    public async Task<ActionResult<IEnumerable<ProjectDTO>>> Get(FilterRequest request)
+    public async Task<ActionResult<IEnumerable<ProjectDTO>>> Get([FromQuery]FilterRequest request)
     {
         try
         {
