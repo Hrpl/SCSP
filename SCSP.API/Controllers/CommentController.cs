@@ -77,7 +77,7 @@ public class CommentController : ControllerBase
     // DELETE api/<ProjectsController>/5
     [HttpDelete("{id}")]
     [SwaggerOperation(Summary = "Удаление комментария")]
-    public async Task<ActionResult> Delete(int id)
+    public async Task<ActionResult> Delete([FromRoute] int id)
     {
         try
         {

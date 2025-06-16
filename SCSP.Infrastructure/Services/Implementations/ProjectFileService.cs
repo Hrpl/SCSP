@@ -76,9 +76,10 @@ public class ProjectFileService : IProjectFileService
     }
 
     // Получение списка файлов (без самих данных файлов)
-    public async Task<IEnumerable<FileInfo>> GetFilesListAsync()
+    public async Task<IEnumerable<FileInfo>> GetFilesListAsync(int projectId)
     {
         return await _query.Query(TableName)
+            .Where("project_id", projectId)
             .Select("id as Id", 
             "file_name as FileName", 
             "content_type as ContentType", 

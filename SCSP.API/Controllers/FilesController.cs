@@ -48,15 +48,15 @@ public class FilesController : ControllerBase
 
     [HttpGet("list")]
     [SwaggerOperation(Summary = "Получение списка файлов проекта")]
-    public async Task<IActionResult> GetFilesList()
+    public async Task<IActionResult> GetFilesList([FromQuery] int projectId)
     {
-        var files = await _fileUploadService.GetFilesListAsync();
+        var files = await _fileUploadService.GetFilesListAsync(projectId);
         return Ok(files);
     }
 
     [HttpDelete("{fileId}")]
     [SwaggerOperation(Summary = "Удаление файла по его id")]
-    public async Task<IActionResult> DeleteFile(int fileId)
+    public async Task<IActionResult> DeleteFile([FromRoute]int fileId)
     {
         var result = await _fileUploadService.DeleteFileAsync(fileId);
 
