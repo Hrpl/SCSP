@@ -34,18 +34,13 @@ public class ProjectService : IProjectService
             .Where("teacher_id", userId)
             .OrWhere("student_id", userId)
             .When(request.SortingOnName == 0, q => q.OrderByDesc("name"), q => q.OrderBy("name"))
+            .When(!string.IsNullOrEmpty(request.Search), q => q.WhereLike("name", request.Search))
             .When(request.SortingOnDate == 0, q => q.OrderByDesc("created_at"), q => q.OrderBy("created_at"))
             .Select("id as Id",
             "name as Name",
             "description as Description",
             "teacher_id as TeacherId",
             "student_id as StudentId");
-
-        if (!string.IsNullOrEmpty(request.Search)) 
-        {
-            query.WhereRaw($"LOWER(name) LIKE LOWER(?)", $"%{request.Search}%");
-        }
-
 
         var result = await _query.GetAsync<ProjectDTO>(query);
 
